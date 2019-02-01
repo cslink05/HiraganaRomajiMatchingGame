@@ -1,0 +1,37 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 100px;
+    font-family: 'Lato', sans-serif;
+    color: white;
+}
+
+.grid {
+    max-width: 1060px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.card {
+    display: flex;
+    margin: 10 px;
+    margin-top: 10px;
+    background-color: blueviolet;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 200px;
+    width: 200px;
+    align-items: center;
+    justify-content: center;
+}
+
+.selected {
+    border: 5px solid red;
+}
