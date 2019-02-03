@@ -8,6 +8,11 @@ body {
     font-family: 'Lato', sans-serif;
 }
 
+.container{
+    max-width: 1080px;
+    margin: 0 auto;
+}
+
 h1 {
     color: black;
     font-size: 30px;
@@ -21,7 +26,7 @@ h1 {
 }
 
 .grid {
-    max-width: 1060px;
+    max-width: 1080px;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
@@ -29,16 +34,12 @@ h1 {
 }
 
 .card {
-    display: flex;
-    margin: 10 px;
-    margin-top: 10px;
+    margin: 10px 0px;
     background-color: blueviolet;
-    align-items: center;
-    justify-content: center;
     position: relative;
     transition: all .4s linear;
     transform-style: preserve-3d;
-
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .2);   
 }
 
 .card,
@@ -56,10 +57,22 @@ h1 {
 
 .front {
     background: url('./sakura.jpg') no-repeat center center;
+    transition: all .2s;
 }
+
+.front:hover {
+    transform: scaleX(1.1) scaleY(1.1);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, .2); 
+}
+
+
 
 .back {
     transform: rotateY(180deg);
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
 }
 
 .selected {
@@ -68,4 +81,69 @@ h1 {
 
 .match {
     visibility: hidden;
+}
+
+.buttons {
+    max-width: 1060px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.buttons-box {
+    text-align: center;
+    
+}
+
+.buttons--choice {
+    background-color: blueviolet;
+    font-size: 15px;
+    color: white;
+    border: none;
+    border-radius: 100px;
+    padding: 10px 25px;
+    margin: 8px;
+    cursor: pointer;
+    transition: all .2s;
+}
+
+.buttons--choice:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .2);
+}
+
+.buttons--choice:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+}
+
+.buttons--choice:active,
+.buttons--choice:focus {
+    outline: none;
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+}
+
+.results {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    height: 80px;
+}
+
+#pairGrid {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+
+}
+
+.matched-pairs {
+    padding: 5px 8px;
+    background-color: rgb(96, 27, 160);
+    color: white;
+    text-align: center;
+    margin: 5px;
 }
