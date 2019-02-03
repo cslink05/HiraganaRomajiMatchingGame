@@ -5,8 +5,18 @@
 }
 
 body {
-    font-size: 100px;
     font-family: 'Lato', sans-serif;
+}
+
+h1 {
+    color: black;
+    font-size: 30px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#game {
+    font-size: 100px;
     color: white;
 }
 
@@ -23,15 +33,39 @@ body {
     margin: 10 px;
     margin-top: 10px;
     background-color: blueviolet;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center center;
-    height: 200px;
-    width: 200px;
     align-items: center;
     justify-content: center;
+    position: relative;
+    transition: all .4s linear;
+    transform-style: preserve-3d;
+
+}
+
+.card,
+.back,
+.front {
+    height: 200px;
+    width: 200px;
+}
+
+.back,
+.front {
+    position: absolute;
+    backface-visibility: hidden;
+}
+
+.front {
+    background: url('./sakura.jpg') no-repeat center center;
+}
+
+.back {
+    transform: rotateY(180deg);
 }
 
 .selected {
-    border: 5px solid red;
+    transform: rotateY(180deg);
+}
+
+.match {
+    visibility: hidden;
 }

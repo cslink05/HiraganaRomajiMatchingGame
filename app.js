@@ -1,49 +1,54 @@
 const game = document.querySelector('#game');
+const pairGrid = document.querySelector('#pairGrid');
 const grid = document.createElement('section');
+const matchedGrid = document.createElement('section');
+const guesses = document.querySelector('#guesses');
 
 grid.setAttribute('class', 'grid');
 game.appendChild(grid);
+matchedGrid.setAttribute('class', 'grid');
+pairGrid.appendChild(matchedGrid);
 
 const aAoODeck = [
     {
         'character': 'a',
-        'value': '1',
+        'value': 'a　あ',
     },
     {
         'character': 'i',
-        'value': '2',
+        'value': 'i　い',
     },
     {
         'character': 'u',
-        'value': '3',
+        'value': 'u　う',
     },
     {
         'character': 'e',
-        'value': '4',
+        'value': 'e　え',
     },
     {
         'character': 'o',
-        'value': '5',
+        'value': 'o　お',
     },
     {
         'character': 'あ',
-        'value': '1',
+        'value': 'a　あ',
     },
     {
         'character': 'い',
-        'value': '2',
+        'value': 'i　い',
     },
     {
         'character': 'う',
-        'value': '3',
+        'value': 'u　う',
     },
     {
         'character': 'え',
-        'value': '4',
+        'value': 'e　え',
     },
     {
         'character': 'お',
-        'value': '5',
+        'value': 'o　お',
     },
 
 ]
@@ -54,55 +59,89 @@ playTable.forEach(item => {
     const card = document.createElement('div');
     card.classList.add('card');
     card.dataset.value = item.value;
-    card.textContent = item.character;
-    grid.appendChild(card);
-})
+    card.dataset.name = item.character;
 
+    const front = document.createElement('div');
+    front.classList.add('front');
+
+    const back = document.createElement('div');
+    back.classList.add('back');
+    back.textContent = item.character;
+
+    grid.appendChild(card);
+    card.appendChild(front);
+    card.appendChild(back);
+})
 
 let cardCount = 0;
 let card1 = '';
+let firstSelected = '';
 let card2 = '';
+let card2Char = '';
+guesses.textContent = 0;
 
+function resetTurn() {
+    cardCount = 0;
+    card1 = '';
+    card2 = '';
+    guesses.textContent++;
+};
 
+function removeSelected() {
+    const selected = document.querySelectorAll('.selected');
+    selected.forEach(card => {
+        card.classList.remove('selected');
+    })
+}
+function match() {
+    
+    const matched = document.querySelectorAll('.selected');
+    matched.forEach(card => {
+        card.classList.add('match');
+    });
+    removeSelected();
+    
+};
+
+function addCardsToGrid() {
+    let answer = document.createElement('h1');
+    answer.textContent = card1;
+    pairGrid.appendChild(answer);
+    
+}
 
 grid.addEventListener('click', function (event) {
     let areaClicked = event.target;
 
     function chooseTwoCards() {
+        
         if (cardCount === 0) {
-            areaClicked.classList.add('selected');
-            card1 = areaClicked.dataset.value;
+            card1 = areaClicked.parentNode.dataset.value;
+            firstSelected = areaClicked.parentNode.dataset.name;
             cardCount++;
-        } else if (cardCount === 1) {
-            areaClicked.classList.add('selected');
-            card2 = areaClicked.dataset.value;
-            cardCount++;
+            areaClicked.parentNode.classList.add('selected');
+        } else if (cardCount === 1 && firstSelected !== areaClicked.parentNode.dataset.name) {
+            card2 = areaClicked.parentNode.dataset.value;
+            areaClicked.parentNode.classList.add('selected');
+        } 
 
+        if (card1 && card2){
             if (card1 === card2){
-                console.log('its a match');
-                cardCount = 0;
+                setTimeout(match, 2000);
+                addCardsToGrid();
+                resetTurn();
             } else {
-                console.log('not a match');
-                cardCount = 0;
-                card1 = '';
-                card2 = '';
+                setTimeout(removeSelected, 2000);
+                resetTurn();
             }
-        } else {
-            cardCount = 0;
-            card1 = '';
-            card2 = '';
         }
+        
     };
 
-    if(areaClicked.nodeName ==='DIV') {
+    if (areaClicked.nodeName ==='DIV') {
         chooseTwoCards();
-    } else {
+    } else if (areaClicked.nodeName === 'SECTION') {
         return;
     };
-
-    
-
-    console.log('This is cardCount' + cardCount);
-    console.log(card1);
         
 })
