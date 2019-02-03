@@ -6,6 +6,13 @@ const guesses = document.querySelector('#guesses');
 const matchOrNot = document.querySelector('#matchOrNot');
 const aAButton = document.querySelector('#aA-button');
 const kaButton = document.querySelector('#ka-button');
+const saButton = document.querySelector('#sa-button');
+const taButton = document.querySelector('#ta-button');
+const naButton = document.querySelector('#na-button');
+const haButton = document.querySelector('#ha-button');
+const maButton = document.querySelector('#ma-button');
+const raButton = document.querySelector('#ra-button');
+const yaButton = document.querySelector('#ya-button');
 
 grid.setAttribute('class', 'grid');
 game.appendChild(grid);
@@ -38,6 +45,98 @@ const kaKoDeck = [
     {'character': 'こ', 'value': 'ko　こ'},
 ];
 
+const saSoDeck = [
+    {'character': 'sa', 'value': 'sa　さ'},
+    {'character': 'shi', 'value': 'shi　し'},
+    {'character': 'su', 'value': 'su　す'},
+    {'character': 'se', 'value': 'se　せ'},
+    {'character': 'so', 'value': 'so　そ'},
+    {'character': 'さ', 'value': 'sa　さ'},
+    {'character': 'し', 'value': 'shi　し'},
+    {'character': 'す', 'value': 'su　す'},
+    {'character': 'せ', 'value': 'se　せ'},
+    {'character': 'そ', 'value': 'so　そ'},
+];
+
+const taToDeck = [
+    {'character': 'ta', 'value': 'ta　た'},
+    {'character': 'chi', 'value': 'chi　ち'},
+    {'character': 'tsu', 'value': 'tsu　つ'},
+    {'character': 'te', 'value': 'te　て'},
+    {'character': 'to', 'value': 'to　と'},
+    {'character': 'た', 'value': 'ta　た'},
+    {'character': 'ち', 'value': 'thi　ち'},
+    {'character': 'つ', 'value': 'tsu　つ'},
+    {'character': 'て', 'value': 'te　て'},
+    {'character': 'と', 'value': 'to　と'},
+];
+
+const naNoDeck = [
+    {'character': 'na', 'value': 'na　な'},
+    {'character': 'ni', 'value': 'ni　に'},
+    {'character': 'nu', 'value': 'nu　ぬ'},
+    {'character': 'ne', 'value': 'ne　ね'},
+    {'character': 'no', 'value': 'no　の'},
+    {'character': 'な', 'value': 'na　な'},
+    {'character': 'に', 'value': 'ni　に'},
+    {'character': 'ぬ', 'value': 'nu　ぬ'},
+    {'character': 'ね', 'value': 'ne　ね'},
+    {'character': 'の', 'value': 'no　の'},
+];
+
+const haHoDeck = [
+    {'character': 'ha', 'value': 'ha　は'},
+    {'character': 'hi', 'value': 'hi　ひ'},
+    {'character': 'hu', 'value': 'hu　ふ'},
+    {'character': 'he', 'value': 'he　へ'},
+    {'character': 'ho', 'value': 'ho　ほ'},
+    {'character': 'は', 'value': 'ha　は'},
+    {'character': 'ひ', 'value': 'hi　ひ'},
+    {'character': 'ふ', 'value': 'hu　ふ'},
+    {'character': 'へ', 'value': 'he　へ'},
+    {'character': 'ほ', 'value': 'ho　ほ'},
+];
+
+const maMoDeck = [
+    {'character': 'ma', 'value': 'ma　ま'},
+    {'character': 'mi', 'value': 'mi　み'},
+    {'character': 'mu', 'value': 'mu　む'},
+    {'character': 'me', 'value': 'me　め'},
+    {'character': 'mo', 'value': 'mo　も'},
+    {'character': 'ま', 'value': 'ma　ま'},
+    {'character': 'み', 'value': 'mi　み'},
+    {'character': 'む', 'value': 'mu　む'},
+    {'character': 'め', 'value': 'me　め'},
+    {'character': 'も', 'value': 'mo　も'},
+];
+
+const raRoDeck = [
+    {'character': 'ra', 'value': 'ra　ら'},
+    {'character': 'ri', 'value': 'ri　り'},
+    {'character': 'ru', 'value': 'ru　る'},
+    {'character': 're', 'value': 're　れ'},
+    {'character': 'ro', 'value': 'ro　ろ'},
+    {'character': 'ら', 'value': 'ra　ら'},
+    {'character': 'り', 'value': 'ri　り'},
+    {'character': 'る', 'value': 'ru　る'},
+    {'character': 'れ', 'value': 're　れ'},
+    {'character': 'ろ', 'value': 'ro　ろ'},
+];
+
+const yaNDeck = [
+    {'character': 'ya', 'value': 'ya　や'},
+    {'character': 'yu', 'value': 'yu　ゆ'},
+    {'character': 'yo', 'value': 'yo　よ'},
+    {'character': 'wa', 'value': 'wa　わ'},
+    {'character': 'wo', 'value': 'wo　を'},
+    {'character': 'n', 'value': 'n　ん'},
+    {'character': 'や', 'value': 'ya　や'},
+    {'character': 'ゆ', 'value': 'yu　ゆ'},
+    {'character': 'よ', 'value': 'yo　よ'},
+    {'character': 'わ', 'value': 'wa　わ'},
+    {'character': 'を', 'value': 'wo　を'},
+    {'character': 'ん', 'value': 'n　ん'},
+];
 
 
 aAButton.addEventListener('click', function(event) {
@@ -48,6 +147,41 @@ aAButton.addEventListener('click', function(event) {
 kaButton.addEventListener('click', function(event) {
     event.preventDefault();
     setUpGame(kaKoDeck);
+});
+
+saButton.addEventListener('click', function(event) {
+    event.preventDefault();
+    setUpGame(saSoDeck);
+});
+
+taButton.addEventListener('click', function(event) {
+    event.preventDefault();
+    setUpGame(taToDeck);
+});
+
+naButton.addEventListener('click', function(event) {
+    event.preventDefault();
+    setUpGame(naNoDeck);
+});
+
+haButton.addEventListener('click', function(event) {
+    event.preventDefault();
+    setUpGame(haHoDeck);
+});
+
+maButton.addEventListener('click', function(event) {
+    event.preventDefault();
+    setUpGame(maKoDeck);
+});
+
+raButton.addEventListener('click', function(event) {
+    event.preventDefault();
+    setUpGame(raRoDeck);
+});
+
+yaButton.addEventListener('click', function(event) {
+    event.preventDefault();
+    setUpGame(yaNDeck);
 });
 
 
@@ -150,6 +284,7 @@ grid.addEventListener('click', function (event) {
         if (card1 && card2){
             if (card1 === card2){
                 matchOrNot.textContent = "You found a match! Keep Going!"
+                totalMatches++;
                 setTimeout(match, 1500);
                 addCardsToGrid();
                 resetTurn();
@@ -159,6 +294,10 @@ grid.addEventListener('click', function (event) {
                 resetTurn();
             };
         };
+
+        if(totalMatches === 5) {
+            matchOrNot.textContent = "You found all the pairs! Choose another deck to reset"
+        }
         
     };
 
