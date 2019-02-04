@@ -10,38 +10,51 @@
 </head>
 <body>
     <div class="container">
-        <div>
-            <h1>Hiragana & Romaji Matching Game</h1>
+        <div class="header">
+            <div>
+                <h1 id="heading">Japanese Hiragana & Romaji Matching Game</h1>
+            </div>   
         </div>
-        <div class="buttons-box">
-            <h3>Choose a deck!</h3>
-            <div class="buttons">
-                <button class="buttons--choice" id="aA-button">a - o</button>
-                <button class="buttons--choice" id="ka-button">ka - ko</button>
-                <button class="buttons--choice" id="sa-button">sa - so</button>
-                <button class="buttons--choice" id="ta-button">ta - to</button>
-                <button class="buttons--choice" id="na-button">na - no</button>
-                <button class="buttons--choice" id="ha-button">ha - ho</button>
-                <button class="buttons--choice" id="ma-button">ma - mo</button>
-                <button class="buttons--choice" id="ra-button">ra - ro</button>
-                <button class="buttons--choice" id="ya-button">ya, wa, n</button>
+        <div class="content">
+           <div class="sidebar">
+                <div class="nav">
+                    <h3 id="buttons--header">Card Decks</h3>
+                    <div class="buttons">
+                        <button class="buttons--choice" id="aA-button">a - o</button>
+                        <button class="buttons--choice" id="ka-button">ka - ko</button>
+                        <button class="buttons--choice" id="sa-button">sa - so</button>
+                        <button class="buttons--choice" id="ta-button">ta - to</button>
+                        <button class="buttons--choice" id="na-button">na - no</button>
+                        <button class="buttons--choice" id="ha-button">ha - ho</button>
+                        <button class="buttons--choice" id="ma-button">ma - mo</button>
+                        <button class="buttons--choice" id="ra-button">ra - ro</button>
+                        <button class="buttons--choice" id="ya-button">ya wa n</button>
+                    </div> 
+                </div>
+                <div class="footer">
+                    &copy; 2019 by Link's Links. All rights reserved.
+                </div>
+            </div>
+        <div class="play-area">
+           
+            <div>
+                <h1 id="matchOrNot">Choose a deck to get started!</h1>
+            </div>
+            <div id="game"></div>
+        </div>
+        <div class="results">
+            <div>
+                <h2 id="guess-box--header">Guesses</h2>
+                <h2 id="guesses"></h2>  
+            </div>
+            <div class="pairs-box">
+                <h2 id="pairs-box--header">Matched Pairs</h2>
+                <div id="pairGrid"></div>    
             </div>
         </div>
         
-        <div class="results">
-            <div>
-                <h1 id="matchOrNot"></h1>
-            </div>
-            <div>
-                <h1>Matched Pairs</h1>
-                <div id="pairGrid"></div>    
-            </div>
-            
-            <div>
-                <h1>Guesses: <span id="guesses"></span></h1>  
-            </div>
         </div>
-        <div id="game"></div>
+        
     </div>
     <script src="app.js"></script>
 </body>

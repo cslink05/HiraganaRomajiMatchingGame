@@ -13,6 +13,7 @@ const haButton = document.querySelector('#ha-button');
 const maButton = document.querySelector('#ma-button');
 const raButton = document.querySelector('#ra-button');
 const yaButton = document.querySelector('#ya-button');
+const allButtons = document.querySelectorAll('.buttons--choice');
 
 grid.setAttribute('class', 'grid');
 game.appendChild(grid);
@@ -65,7 +66,7 @@ const taToDeck = [
     {'character': 'te', 'value': 'te　て'},
     {'character': 'to', 'value': 'to　と'},
     {'character': 'た', 'value': 'ta　た'},
-    {'character': 'ち', 'value': 'thi　ち'},
+    {'character': 'ち', 'value': 'chi　ち'},
     {'character': 'つ', 'value': 'tsu　つ'},
     {'character': 'て', 'value': 'te　て'},
     {'character': 'と', 'value': 'to　と'},
@@ -138,7 +139,6 @@ const yaNDeck = [
     {'character': 'ん', 'value': 'n　ん'},
 ];
 
-
 aAButton.addEventListener('click', function(event) {
     event.preventDefault();
     setUpGame(aAoODeck);
@@ -171,7 +171,7 @@ haButton.addEventListener('click', function(event) {
 
 maButton.addEventListener('click', function(event) {
     event.preventDefault();
-    setUpGame(maKoDeck);
+    setUpGame(maMoDeck);
 });
 
 raButton.addEventListener('click', function(event) {
@@ -184,22 +184,38 @@ yaButton.addEventListener('click', function(event) {
     setUpGame(yaNDeck);
 });
 
-
 let cardCount = 0;
 let card1 = '';
 let firstSelected = '';
 let card2 = '';
 let totalMatches = '';
+let currentDeck = '';
 guesses.textContent = 0;
 
 function setUpGame(deck) {
     clearGrid();
+    removeHighlight();
     chooseDeck(deck);
     resetGame();
 }
 
+allButtons.forEach(button => {
+    button.addEventListener('click', function (event){
+        button.classList.add('clicked-button');
+    });
+});
+
+function removeHighlight() {
+    allButtons.forEach(button => {
+        if(button.classList.contains('clicked-button')) {
+            button.classList.remove('clicked-button');
+        } 
+    });   
+};
+
 function chooseDeck(deck) {
     let playTable = deck;
+    currentDeck = deck;
     playTable.sort(() => 0.5 - Math.random());
     playTable.forEach(item => {
         const card = document.createElement('div');
@@ -225,7 +241,8 @@ function resetGame() {
     card1 = '';
     card2 = '';
     guesses.textContent = 0;
-    matchOrNot.textContent = '';
+    matchOrNot.textContent = 'Match the Japanese and English characters';
+    totalMatches = 0;
 };
 
 function clearGrid() {
@@ -283,19 +300,21 @@ grid.addEventListener('click', function (event) {
 
         if (card1 && card2){
             if (card1 === card2){
-                matchOrNot.textContent = "You found a match! Keep Going!"
+                matchOrNot.textContent = "You found a match!"
                 totalMatches++;
                 setTimeout(match, 1500);
                 addCardsToGrid();
                 resetTurn();
             } else {
-                matchOrNot.textContent = "Not a match... Try again!"
+                matchOrNot.textContent = "Try again!"
                 setTimeout(removeSelected, 1500);
                 resetTurn();
             };
         };
 
-        if(totalMatches === 5) {
+        if(currentDeck !== yaNDeck && totalMatches === 5) {
+            matchOrNot.textContent = "You found all the pairs! Choose another deck to reset"
+        } else if (currentDeck === yaNDeck && totalMatches === 6) {
             matchOrNot.textContent = "You found all the pairs! Choose another deck to reset"
         }
         

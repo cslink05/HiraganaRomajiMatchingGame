@@ -6,21 +6,43 @@
 
 body {
     font-family: 'Lato', sans-serif;
+    color: rgb(83, 83, 83);
+    background-color: blueviolet;
 }
 
 .container{
-    max-width: 1080px;
-    margin: 0 auto;
+    max-width: 1800px;
+    margin: 0 50px;
+    background-color: rgb(250, 250, 250);
+    box-shadow: 0px 20px 60px rgba(0, 0, 0, .3);
+    min-height: 95vh;
+}
+
+.header {
+    background-color: rgb(241, 241, 241);
+    border-bottom: 1px solid  rgb(230, 230, 230);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#heading {
+    padding: 10px;
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
 }
 
 h1 {
-    color: black;
     font-size: 30px;
     margin: 0 auto;
     text-align: center;
 }
 
 #game {
+    width: 1080px;
     font-size: 100px;
     color: white;
 }
@@ -65,8 +87,6 @@ h1 {
     box-shadow: 0 12px 25px rgba(0, 0, 0, .2); 
 }
 
-
-
 .back {
     transform: rotateY(180deg);
     display: flex;
@@ -83,28 +103,34 @@ h1 {
     visibility: hidden;
 }
 
-.buttons {
-    max-width: 1060px;
-    margin: 0 auto;
+.sidebar {
+    background-color: rgb(90, 90, 90);
+    width: 150px;
     display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 92vh;
 }
 
-.buttons-box {
+.buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#buttons--header {
+    border-bottom: 1px solid rgb(165, 165, 165);
+    color: white;
     text-align: center;
-    
+    padding: 15px 0;
 }
 
 .buttons--choice {
-    background-color: blueviolet;
+    background-color: rgb(90, 90, 90);
     font-size: 15px;
     color: white;
     border: none;
-    border-radius: 100px;
     padding: 10px 25px;
-    margin: 8px;
     cursor: pointer;
     transition: all .2s;
 }
@@ -112,6 +138,13 @@ h1 {
 .buttons--choice:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, .2);
+    border: 1px solid white;
+}
+
+.clicked-button {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .2);
+    background-color: blueviolet;
 }
 
 .buttons--choice:hover::after {
@@ -126,17 +159,44 @@ h1 {
     box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
 }
 
+.footer {
+    font-size: 12px;
+    width: 100px;
+    margin: 10px auto;
+    text-align: center;
+    color: white;
+}
+
 .results {
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    height: 80px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 600px;
+    float: right;
+    margin-right: 20px;
+}
+
+#guess-box--header {
+    border-bottom: 1px solid black;
+    margin-top: 10px;
+}
+
+#guesses {
+    text-align: center;
+}
+
+.pairs-box {
+    margin-top: 40px;
+}
+
+#pairs-box--header {
+    border-bottom: 1px solid black;
 }
 
 #pairGrid {
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
+    flex-direction: column;
 
 }
 
@@ -146,4 +206,8 @@ h1 {
     color: white;
     text-align: center;
     margin: 5px;
+}
+
+#matchOrNot {
+    margin-top: 10px;
 }
