@@ -20,6 +20,10 @@ game.appendChild(grid);
 matchedGrid.setAttribute('class', 'grid');
 pairGrid.appendChild(matchedGrid);
 
+////////////////////
+//   CARD DECKS
+////////////////////
+
 const aAoODeck = [
     {'character': 'a', 'value': 'a　あ'},
     {'character': 'i', 'value': 'i　い'},
@@ -139,6 +143,10 @@ const yaNDeck = [
     {'character': 'ん', 'value': 'n　ん'},
 ];
 
+///////////////////////
+// DECK CHOICE BUTTONS
+///////////////////////
+
 aAButton.addEventListener('click', function(event) {
     event.preventDefault();
     setUpGame(aAoODeck);
@@ -192,6 +200,8 @@ let totalMatches = '';
 let currentDeck = '';
 guesses.textContent = 0;
 
+
+//Set up a new game
 function setUpGame(deck) {
     clearGrid();
     removeHighlight();
@@ -199,12 +209,14 @@ function setUpGame(deck) {
     resetGame();
 }
 
+//Highlight the button of the deck chosen
 allButtons.forEach(button => {
     button.addEventListener('click', function (event){
         button.classList.add('clicked-button');
     });
 });
 
+//Remove the highlight on a button if another deck is chosen
 function removeHighlight() {
     allButtons.forEach(button => {
         if(button.classList.contains('clicked-button')) {
@@ -213,6 +225,7 @@ function removeHighlight() {
     });   
 };
 
+//A deck is chosen, shuffled, dealt onto the play area
 function chooseDeck(deck) {
     let playTable = deck;
     currentDeck = deck;
@@ -236,6 +249,7 @@ function chooseDeck(deck) {
     });
 };
 
+//Reset the game
 function resetGame() {
     cardCount = 0;
     card1 = '';
@@ -245,6 +259,7 @@ function resetGame() {
     totalMatches = 0;
 };
 
+//Clears the grid
 function clearGrid() {
     while(grid.firstChild) {
         grid.removeChild(grid.firstChild);
@@ -254,6 +269,7 @@ function clearGrid() {
     }
 };
 
+//After each turn, clear the chosen cards and increase the guess count
 function resetTurn() {
     cardCount = 0;
     card1 = '';
@@ -261,6 +277,7 @@ function resetTurn() {
     guesses.textContent++;
 };
 
+//Unflip cards after checking match
 function removeSelected() {
     const selected = document.querySelectorAll('.selected');
     selected.forEach(card => {
@@ -268,16 +285,17 @@ function removeSelected() {
     });
 };
 
+//Removes a matched pair from the board
 function match() {
     const matched = document.querySelectorAll('.selected');
     matched.forEach(card => {
         card.classList.add('match');
     });
     removeSelected();
-    
 };
 
-function addCardsToGrid() {
+//Adds a matched pair to the correct answers list
+function addMatchToResults() {
     let answer = document.createElement('h3');
     answer.classList.add('matched-pairs')
     answer.textContent = card1;
@@ -287,6 +305,7 @@ function addCardsToGrid() {
 grid.addEventListener('click', function (event) {
     let areaClicked = event.target;
 
+    //Each time a card is chosen, add it to a variable to be checked
     function chooseTwoCards() {
         if (cardCount === 0) {
             card1 = areaClicked.parentNode.dataset.value;
@@ -298,12 +317,13 @@ grid.addEventListener('click', function (event) {
             areaClicked.parentNode.classList.add('selected');
         };
 
+        //Check the 2 cards for a match
         if (card1 && card2){
             if (card1 === card2){
                 matchOrNot.textContent = "You found a match!"
                 totalMatches++;
                 setTimeout(match, 1500);
-                addCardsToGrid();
+                addMatchToResults();
                 resetTurn();
             } else {
                 matchOrNot.textContent = "Try again!"
@@ -312,6 +332,7 @@ grid.addEventListener('click', function (event) {
             };
         };
 
+        //If all matches are found, display this message
         if(currentDeck !== yaNDeck && totalMatches === 5) {
             matchOrNot.textContent = "You found all the pairs! Choose another deck to reset"
         } else if (currentDeck === yaNDeck && totalMatches === 6) {
@@ -320,6 +341,7 @@ grid.addEventListener('click', function (event) {
         
     };
 
+    //Click on a card, perform the selection and match checking function
     if (areaClicked.nodeName ==='DIV') {
         chooseTwoCards();
     } else if (areaClicked.nodeName === 'SECTION') {
