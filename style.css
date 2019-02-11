@@ -8,6 +8,13 @@ body {
     font-family: 'Lato', sans-serif;
     color: rgb(83, 83, 83);
     background-color: blueviolet;
+    min-height: 1200px;
+}
+
+@media only screen and (max-width: 730px) {
+    body {
+        min-height: 500px;
+    }
 }
 
 .container{
@@ -15,7 +22,14 @@ body {
     margin: 0 50px;
     background-color: rgb(250, 250, 250);
     box-shadow: 0px 20px 60px rgba(0, 0, 0, .3);
-    min-height: 95vh;
+}
+
+@media only screen and (max-width: 1400px) {
+    .container {
+        max-width: 1400px;
+        margin: 0; 
+    }
+    
 }
 
 .header {
@@ -31,8 +45,16 @@ body {
 }
 
 .content {
+    min-height: 600px;
     display: flex;
     justify-content: space-between;
+}
+
+@media only screen and (max-width: 730px) {
+    .content {
+        flex-direction: column;
+        justify-content: flex-start;
+    }
 }
 
 h1 {
@@ -41,22 +63,50 @@ h1 {
     text-align: center;
 }
 
+@media only screen and (max-width: 730px) {
+    h1 {
+        font-size: 16px;
+    }
+}
+
+h2 {
+    font-size: 20px;
+}
+
+@media only screen and (max-width: 730px) {
+    h2 {
+        font-size: 12px;
+    }
+}
+
 #game {
-    width: 1080px;
+    width: 100%;
     font-size: 100px;
     color: white;
 }
 
+@media only screen and (max-width: 730px) {
+    #game {
+        font-size: 40px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    #game {
+        font-size: 20px;
+    }
+}
+
 .grid {
-    max-width: 1080px;
+    width: 100%;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: space-around;
 }
 
 .card {
-    margin: 10px 0px;
+    margin: 10px 5px;
     background-color: blueviolet;
     position: relative;
     transition: all .4s linear;
@@ -70,6 +120,34 @@ h1 {
     height: 200px;
     width: 200px;
 }
+
+@media only screen and (max-width: 1300px) {
+    .card,
+    .back,
+    .front {
+        height: 150px;
+        width: 150px;
+    }
+}
+
+@media only screen and (max-width: 730px) {
+    .card,
+    .back,
+    .front {
+        height: 100px;
+        width: 100px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .card,
+    .back,
+    .front {
+        height: 50px;
+        width: 50px;
+    }
+}
+
 
 .back,
 .front {
@@ -105,17 +183,31 @@ h1 {
 
 .sidebar {
     background-color: rgb(90, 90, 90);
-    width: 150px;
+    min-width: 150px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 92vh;
 }
+
+@media only screen and (max-width: 730px) {
+    .sidebar {
+        height: 100%;
+    }
+}
+
 
 .buttons {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+@media only screen and (max-width: 730px) {
+    .buttons {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
 }
 
 #buttons--header {
@@ -125,14 +217,27 @@ h1 {
     padding: 15px 0;
 }
 
+@media only screen and (max-width: 730px) {
+    #buttons--header {
+        display: none;
+    }
+}
+
 .buttons--choice {
     background-color: rgb(90, 90, 90);
     font-size: 15px;
     color: white;
     border: none;
-    padding: 10px 25px;
+    padding: 10px 0px;
     cursor: pointer;
     transition: all .2s;
+}
+
+@media only screen and (max-width: 730px) {
+    .buttons--choice {
+        padding: 10px 10px;
+        font-size: 12px;
+    }
 }
 
 .buttons--choice:hover {
@@ -141,10 +246,26 @@ h1 {
     border: 1px solid white;
 }
 
+@media only screen and (max-width: 730px) {
+    .buttons--choice:hover {
+        transform: translateY(0px);
+        border: none;
+        box-shadow: none;
+        background-color: blueviolet;
+    }
+}
+
 .clicked-button {
     transform: translateY(-3px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, .2);
     background-color: blueviolet;
+}
+
+@media only screen and (max-width: 730px) {
+    .clicked-button {
+        transform: translateY(0px);
+        box-shadow: none;
+    }
 }
 
 .buttons--choice:hover::after {
@@ -159,6 +280,14 @@ h1 {
     box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
 }
 
+@media only screen and (max-width: 730px) {
+    .buttons--choice:active,
+    .buttons--choice:focus {
+        transform: translateY(0px);
+        box-shadow: none;
+    }
+}
+
 .footer {
     font-size: 12px;
     width: 100px;
@@ -167,19 +296,38 @@ h1 {
     color: white;
 }
 
+@media only screen and (max-width: 730px) {
+    .footer {
+        display: none;
+    }
+}
+
 .results {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    height: 600px;
-    float: right;
+    min-width: 100px;
     margin-right: 20px;
+}
+
+@media only screen and (max-width: 730px) {
+    .results {
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: flex-start;
+    }
 }
 
 #guess-box--header {
     border-bottom: 1px solid black;
     margin-top: 10px;
+}
+
+@media only screen and (max-width: 730px) {
+    #guess-box--header {
+        margin-top: 0;
+    }
 }
 
 #guesses {
@@ -190,8 +338,15 @@ h1 {
     margin-top: 40px;
 }
 
+@media only screen and (max-width: 730px) {
+    .pairs-box {
+        margin-top: 0;
+    }
+}
+
 #pairs-box--header {
     border-bottom: 1px solid black;
+    text-align: center;
 }
 
 #pairGrid {
@@ -208,6 +363,13 @@ h1 {
     margin: 5px;
 }
 
+@media only screen and (max-width: 730px) {
+    .matched-pairs {
+        font-size: 12px;
+    }
+}
+
 #matchOrNot {
     margin-top: 10px;
+    text-align: center;
 }
